@@ -1,0 +1,16 @@
+{
+    "name": "churchtools-calendarlocations",
+    "version": "1.0.0",
+    "keywords": ["churchtools", "ics", "icalendar", "ical", "resources"],
+    "main": "main.js",
+    "scripts": {
+        "start": "node main.js"
+    },
+    "author": "a.schild",
+    "contributors": [],
+    "dependencies": {
+        "@churchtools/churchtools-client": "^1.3.0",
+        "axios-cookiejar-support": "^4.0.0",
+        "tough-cookie": "^4.0.0"
+    }
+}
