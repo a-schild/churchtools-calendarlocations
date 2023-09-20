@@ -1,5 +1,11 @@
 {
-	"site_url": "https://my.church.tools",
-	"auth_token": "<my-login-token>",
-        "process_calendar_ids": [2, 79, 62, 70, 78, 60, 32]
+    "site_url": "https://my.church.tools",
+    "auth_token": "<my-login-token>",
+    "process_calendars": [
+        {
+            "id": 2
+        }, 
+        {
+            "id": 79
+        }]
 }
