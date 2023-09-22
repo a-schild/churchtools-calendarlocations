@@ -37,7 +37,10 @@ const now= new Date();
 let fromDate= addDays(now, 0 - config.past_days);
 let toDate= addDays(now, config.future_days);
 
-myCT.get('/calendars/appointments', {'calendar_ids': calList, 'from': fromDate.toISOString().split('T')[0], 'to': toDate.toISOString().split('T')[0]} ).then(all_appointments => {
+myCT.get('/calendars/appointments', 
+            {'calendar_ids': calList, 
+             'from': getISODateStr(fromDate), 
+             'to': getISODateStr(toDate)} ).then(all_appointments => {
     logger.debug('Got '+all_appointments.length+' calendar entries');
     all_appointments.forEach(processCalEntry);
 });
@@ -45,22 +48,49 @@ myCT.get('/calendars/appointments', {'calendar_ids': calList, 'from': fromDate.t
 function processCalEntry(currentValue, index) {
     if ((currentValue.base.isInternal && config.process_internal_events) ||
             (!currentValue.base.isInternal && config.process_non_internal_events)) {
-        logger.debug('Checking: '+index);
-        logger.debug(currentValue.base);
-        logger.debug(currentValue.base.address);
+        logger.trace('Checking: '+index);
+        logger.trace(currentValue.base);
+        logger.trace(currentValue.base.address);
         if (currentValue.base.address) {
             // Has address entry
             logger.debug('Has address: '+index);
-            logger.debug(currentValue.base.address);
+            logger.trace(currentValue.base.address);
         } else {
-            logger.debug('Has NO address, check for resources: '+index);
+            logger.trace('Has NO address, check for resources: '+index);
+            let startDate= new Date(currentValue.base.startDate);
+            let getURL= '/calendars/'+currentValue.base.calendar.id+'/appointments/'+currentValue.base.id+'/'+getISODateStr(startDate);
+            logger.trace('Retrieve details from '+getURL);
+            myCT.get(getURL).then(all_details => {
+                let bookings= all_details.bookings;
+                if (bookings.length > 0) {
+                    logger.debug("Got details and "+bookings.length+" bookings");
+                    let booking1= bookings[0];
+                    logger.debug("Booking for resource: "+booking1.base.resource.id);
+                    // Now search on config for location details
+                    let foundLocation= false;
+                    for (let locationID in config.locations) {
+                        let locationDetail= config.locations[locationID];
+                        logger.debug(locationDetail);
+                        if (locationDetail.locationID === booking1.base.resource.id) {
+                            logger.debug('Found location in config '+booking1.base.resource.id);
+                            logger.debug(locationDetail);
+                            foundLocation= true;
+                        } else {
+                            // logger.debug(locationDetail);
+                        }
+                    }
+                    if (!foundLocation) {
+                        logger.warn("No location found in config for resource id "+booking1.base.resource.id);
+                    }
+                }
+            });
         }
     } else {
         logger.info('Not processing: '+index);
-//        logger.debug(currentValue.base.id);
-//        logger.debug(currentValue.base);
-//        logger.debug(currentValue.base.isInternal);
-        //logger.debug(index);
+        logger.trace(currentValue.base.id);
+        logger.trace(currentValue.base);
+        logger.trace(currentValue.base.isInternal);
+        logger.trace(index);
     }
 }
 
@@ -92,3 +122,7 @@ function addDays(date, days) {
 //        }
 //    }
 //});
+
+function getISODateStr(inDate) {
+    return inDate.toISOString().split('T')[0];
+}

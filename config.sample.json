@@ -11,5 +11,19 @@
         }, 
         {
             "id": 79
-        }]
+        }],
+    "locations": [
+            {
+                "locationID": 4,
+                "meetingAt": "Bibliotheksplatz Nidau",
+                "street": "Hauptstrasse 73",
+                "addition": null,
+                "district": null,
+                "zip": "2560",
+                "city": "Nidau",
+                "country": null,
+                "latitude": "47.1244565",
+                "longitude": "7.2411075"
+            }
+        ]
 }
