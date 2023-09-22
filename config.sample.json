@@ -1,6 +1,10 @@
 {
+    "log_level": "debug",
     "site_url": "https://my.church.tools",
     "auth_token": "<my-login-token>",
+    "past_days": 0,
+    "future_days": 370,
+    "process_private_events": false, 
     "process_calendars": [
         {
             "id": 2
