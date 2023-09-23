@@ -68,6 +68,7 @@ function processCalEntry(currentValue, index) {
                     logger.debug("Booking for resource: "+booking1.base.resource.id);
                     // Now search on config for location details
                     let foundLocation= false;
+                    let foundLocationDetails= null;
                     for (let locationIndex in config.locations) {
                         let locationDetail= config.locations[locationIndex];
                         logger.trace("Comparing location with id "+locationDetail.locationID);
@@ -76,18 +77,46 @@ function processCalEntry(currentValue, index) {
                             logger.info('Found location in config '+booking1.base.resource.id);
                             logger.debug(locationDetail);
                             foundLocation= true;
+                            foundLocationDetails= locationDetail;
                         } else {
                             // logger.debug(locationDetail);
                         }
                     }
                     if (!foundLocation) {
-                        logger.warn("No location found in config for resource id "+booking1.base.resource.id);
+                        logger.warn("No location found in config for resource id "+booking1.base.resource.id+" "+booking1.base.resource.name);
+                    } else {
+                        // Now update calendar entry with the location/address
+                        logger.info("Updating location from resource id "+booking1.base.resource.id+" in calendar: "+currentValue.base.calendar.id+" bookingID:"+currentValue.base.id);
+                        logger.debug(currentValue);
+                        let entryURL= '/calendars/'+currentValue.base.calendar.id+'/appointments/'+currentValue.base.id;
+                        let jsonText= '{ '+
+                                '"meetingAt":"'+foundLocationDetails.meetingAt+'",'+
+                                '"street":"'+foundLocationDetails.street+'",'+
+                                '"addition": "'+foundLocationDetails.addition+'",'+
+                                '"district":"'+foundLocationDetails.district+'",'+
+                                '"zip": "'+foundLocationDetails.zip+'",'+
+                                '"city": "'+foundLocationDetails.city+'",'+
+                                '"country": "'+foundLocationDetails.country+'",'+
+                                '"latitude": "'+foundLocationDetails.latitude+'",'+
+                                '"longitude": "'+foundLocationDetails.longitude+'"'+
+                                '}';
+                        const adrObject = JSON.parse(jsonText); 
+                        myCT.get(entryURL).then(one_detail => {
+                            logger.debug("Updating original object");
+                            logger.debug(one_detail);
+                            logger.debug("with:");
+                            one_detail.appointment.address= adrObject;
+                            one_detail.appointment.caption= one_detail.appointment.caption+"."; 
+                            logger.debug(one_detail);
+
+                            myCT.put(entryURL, one_detail.appointment);
+                        });
                     }
                 }
             });
         }
     } else {
-        logger.info('Not processing: '+index);
+        logger.info('Not processing: '+index+" appointment is public/private restricted");
         logger.trace(currentValue.base.id);
         logger.trace(currentValue.base);
         logger.trace(currentValue.base.isInternal);
