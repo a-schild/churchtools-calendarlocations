@@ -68,11 +68,12 @@ function processCalEntry(currentValue, index) {
                     logger.debug("Booking for resource: "+booking1.base.resource.id);
                     // Now search on config for location details
                     let foundLocation= false;
-                    for (let locationID in config.locations) {
-                        let locationDetail= config.locations[locationID];
-                        logger.debug(locationDetail);
+                    for (let locationIndex in config.locations) {
+                        let locationDetail= config.locations[locationIndex];
+                        logger.trace("Comparing location with id "+locationDetail.locationID);
+                        logger.trace(locationDetail);
                         if (locationDetail.locationID === booking1.base.resource.id) {
-                            logger.debug('Found location in config '+booking1.base.resource.id);
+                            logger.info('Found location in config '+booking1.base.resource.id);
                             logger.debug(locationDetail);
                             foundLocation= true;
                         } else {

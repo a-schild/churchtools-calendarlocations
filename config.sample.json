@@ -12,18 +12,292 @@
         {
             "id": 79
         }],
-    "locations": [
-            {
-                "locationID": 4,
-                "meetingAt": "Bibliotheksplatz Nidau",
-                "street": "Hauptstrasse 73",
-                "addition": null,
-                "district": null,
-                "zip": "2560",
-                "city": "Nidau",
-                "country": null,
-                "latitude": "47.1244565",
-                "longitude": "7.2411075"
-            }
-        ]
+    "locations": 
+            [{
+                    "locationID": 38,
+                    "meetingAt": "Pfadi trotz allem",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.1193,
+                    "longitude": 7.2457
+                }, {
+                    "locationID": 33,
+                    "meetingAt": "Matthäuszentrum",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.11724,
+                    "longitude": 7.25555
+                }, {
+                    "locationID": 32,
+                    "meetingAt": "Kapelle",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12508,
+                    "longitude": 7.24001
+                }, {
+                    "locationID": 31,
+                    "meetingAt": "Kirche",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12508,
+                    "longitude": 7.24033
+                }, {
+                    "locationID": 30,
+                    "meetingAt": "Kirchgemeindehaus",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12302,
+                    "longitude": 7.2488
+                }, {
+                    "locationID": 29,
+                    "meetingAt": "Kirchgemeindehaus",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12302,
+                    "longitude": 7.2488
+                }, {
+                    "locationID": 28,
+                    "meetingAt": "Kirchgemeindehaus",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12302,
+                    "longitude": 7.2488
+                }, {
+                    "locationID": 27,
+                    "meetingAt": "Kirchgemeindehaus",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12302,
+                    "longitude": 7.2488
+                }, {
+                    "locationID": 25,
+                    "meetingAt": "Kirchgemeindehaus",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12302,
+                    "longitude": 7.2488
+                }, {
+                    "locationID": 24,
+                    "meetingAt": "Kirchgemeindehaus",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12302,
+                    "longitude": 7.2488
+                }, {
+                    "locationID": 23,
+                    "meetingAt": "Kirchgemeindehaus",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12302,
+                    "longitude": 7.2488
+                }, {
+                    "locationID": 22,
+                    "meetingAt": "Kirchgemeindehaus",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12302,
+                    "longitude": 7.2488
+                }, {
+                    "locationID": 21,
+                    "meetingAt": "Kirchgemeindehaus",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12302,
+                    "longitude": 7.2488
+                }, {
+                    "locationID": 20,
+                    "meetingAt": "Matthäus-Zentrum",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.11724,
+                    "longitude": 7.25555
+                }, {
+                    "locationID": 19,
+                    "meetingAt": "Matthäus-Zentrum",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.11724,
+                    "longitude": 7.25555
+                }, {
+                    "locationID": 18,
+                    "meetingAt": "Matthäus-Zentrum",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.11724,
+                    "longitude": 7.25555
+                }, {
+                    "locationID": 17,
+                    "meetingAt": "Matthäus-Zentrum",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.11724,
+                    "longitude": 7.25555
+                }, {
+                    "locationID": 16,
+                    "meetingAt": "Matthäus-Zentrum",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.11724,
+                    "longitude": 7.25555
+                }, {
+                    "locationID": 15,
+                    "meetingAt": "Matthäus-Zentrum",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.11724,
+                    "longitude": 7.25555
+                }, {
+                    "locationID": 14,
+                    "meetingAt": "Matthäus-Zentrum",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.11724,
+                    "longitude": 7.25555
+                }, {
+                    "locationID": 13,
+                    "meetingAt": "Matthäus-Zentrum",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.11724,
+                    "longitude": 7.25555
+                }, {
+                    "locationID": 12,
+                    "meetingAt": "Matthäus-Zentrum",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2562",
+                    "city": "Port",
+                    "country": "Schweiz",
+                    "latitude": 47.11724,
+                    "longitude": 7.25555
+                }, {
+                    "locationID": 7,
+                    "meetingAt": "Kirchgemeindehaus",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2560",
+                    "city": "Nidau",
+                    "country": "Schweiz",
+                    "latitude": 47.12302,
+                    "longitude": 7.2488
+                }, {
+                    "locationID": 6,
+                    "meetingAt": "Zentrum Ipsach",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2563",
+                    "city": "Ipsach",
+                    "country": "Schweiz",
+                    "latitude": 47.11524,
+                    "longitude": 7.2344
+                }, {
+                    "locationID": 5,
+                    "meetingAt": "Zentrum Ipsach",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2563",
+                    "city": "Ipsach",
+                    "country": "Schweiz",
+                    "latitude": 47.11524,
+                    "longitude": 7.2344
+                }, {
+                    "locationID": 4,
+                    "meetingAt": "Zentrum Ipsach",
+                    "street": "Allmendstrasse 33",
+                    "addition": "",
+                    "district": "",
+                    "zip": "2563",
+                    "city": "Ipsach",
+                    "country": "Schweiz",
+                    "latitude": 47.11524,
+                    "longitude": 7.2344
+                }]
 }
