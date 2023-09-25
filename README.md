@@ -40,6 +40,8 @@ to be put in your config.json file.
 ```bash
 bash main.js [option]
 ```
+Usually you start this every day, every hour with a cron job
+
 ### Options
 - -h Help, show this help
 - -c List all calendars the user has read rights
