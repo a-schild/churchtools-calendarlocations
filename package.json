@@ -4,7 +4,7 @@
     "keywords": ["churchtools", "ics", "icalendar", "ical", "resources"],
     "main": "main.js",
     "scripts": {
-        "start": "node main.js"
+        "start": "node main.js --dry-run"
     },
     "author": "a.schild",
     "contributors": [],
@@ -12,6 +12,7 @@
         "@churchtools/churchtools-client": "^1.3.0",
         "axios-cookiejar-support": "^4.0.0",
         "tough-cookie": "^4.0.0",
-        "pino": "^8.0.0"
+        "pino": "^8.0.0",
+        "yargs": "^17.7"
     }
 }

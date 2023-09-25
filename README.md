@@ -27,6 +27,26 @@ the history.
 npm install
 ```
 
+## Configuration
+Copy over config.sample.json to config.json and adapt the config values
+You have to specify the addresses associated with the resources.
+For this you can use the Locations.ods file, just open it in your spread sheet software
+and add/modify the locations.
+On the last line, in the last column, you will have the generated json config part
+to be put in your config.json file.
+(Just make sure that the numeric format it using iso format, and not the , as decimal separator)
+
+## Running
+```bash
+bash main.js [option]
+```
+### Options
+- -h Help, show this help
+- -c List all calendars the user has read rights
+- -r List all resources the user has read rights
+- --dry-run Process all entries, but don't apply changes to calendar (Simulation mode)
+- -d Turn on debug mode, overrides config file settings
+
 We use this JS client to interact with the CT installation
 
 https://github.com/churchtools/churchtools-js-client

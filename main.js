@@ -1,3 +1,5 @@
+'use strict';
+
 const { ChurchToolsClient, activateLogging } = require('@churchtools/churchtools-client');
 const axiosCookieJarSupport = require('axios-cookiejar-support');
 const tough = require('tough-cookie');
@@ -16,34 +18,62 @@ const logger = pino({
 //  level: 'debug'
 });
 
+
+// Main code
+const args = require('yargs')
+  .scriptName("churchtools-calendarlocations")
+  .usage('$0 [args]')
+  .help('h')
+  .alias('h', 'help')
+  .command('hello [name]', 'welcome to churchtools-calendarlocations')
+  .option('d',{alias:'debug', describe:"Switch on debug level (Overrides config value)"})
+  .option('r',{alias:'resources', describe: "List all resources"})
+  .option('c',{alias:'calendars', describe: "List all calendars"})
+  .options('dry-run', {describe: "Only show what would be updated"})
+  .argv;
+
+if (args.debug) {
+    logger.level= "debug";
+}
+
 const myCT= new ChurchToolsClient();
 myCT.setCookieJar(axiosCookieJarSupport.wrapper, new tough.CookieJar());
 myCT.setBaseUrl(config.site_url);
 myCT.setUnauthorizedInterceptor(config.auth_token);
 activateLogging();
 
-//myCT.get('/whoami?only_allow_authenticated=true').then(whoAmI => {
-//    console.dir(whoAmI);
-//    console.log(`Hello ${whoAmI.firstName} ${whoAmI.lastName}!`);
-//});
-
-let calList= [];
-for (let calConfig in config.process_calendars) {
-    calList.push(config.process_calendars[calConfig].id);
-    //logger.debug("Not found in config: "+config.process_calendars[calConfig].id+" "+all_calendars[cal].id);
+if (args.resources) {
+    listResources();
+} else if (args.calendars) {
+    listCalendars();
+} else {
+    processAppointsments();
 }
-logger.debug("Calendars to process: "+calList);
-const now= new Date();
-let fromDate= addDays(now, 0 - config.past_days);
-let toDate= addDays(now, config.future_days);
+function processAppointsments() {
 
-myCT.get('/calendars/appointments', 
-            {'calendar_ids': calList, 
-             'from': getISODateStr(fromDate), 
-             'to': getISODateStr(toDate)} ).then(all_appointments => {
-    logger.debug('Got '+all_appointments.length+' calendar entries');
-    all_appointments.forEach(processCalEntry);
-});
+    //myCT.get('/whoami?only_allow_authenticated=true').then(whoAmI => {
+    //    console.dir(whoAmI);
+    //    console.log(`Hello ${whoAmI.firstName} ${whoAmI.lastName}!`);
+    //});
+
+    let calList= [];
+    for (let calConfig in config.process_calendars) {
+        calList.push(config.process_calendars[calConfig].id);
+        //logger.debug("Not found in config: "+config.process_calendars[calConfig].id+" "+all_calendars[cal].id);
+    }
+    logger.debug("Calendars to process: "+calList);
+    const now= new Date();
+    let fromDate= addDays(now, 0 - config.past_days);
+    let toDate= addDays(now, config.future_days);
+
+    myCT.get('/calendars/appointments', 
+                {'calendar_ids': calList, 
+                 'from': getISODateStr(fromDate), 
+                 'to': getISODateStr(toDate)} ).then(all_appointments => {
+        logger.debug('Got '+all_appointments.length+' calendar entries');
+        all_appointments.forEach(processCalEntry);
+    });
+}
 
 function processCalEntry(currentValue, index) {
     if ((currentValue.base.isInternal && config.process_internal_events) ||
@@ -108,8 +138,11 @@ function processCalEntry(currentValue, index) {
                             one_detail.appointment.address= adrObject;
                             one_detail.appointment.caption= one_detail.appointment.caption+"."; 
                             logger.debug(one_detail);
-
-                            myCT.put(entryURL, one_detail.appointment);
+                            if (args.dryRun) {
+                                logger.info("Dry run, not updating appointment location");
+                            } else {
+                                myCT.put(entryURL, one_detail.appointment);
+                            }
                         });
                     }
                 }
@@ -130,28 +163,30 @@ function addDays(date, days) {
   return result;
 }
 
-//myCT.get('/calendars').then(all_calendars => {
-//    // Loop through all calendars visible for the user
-//    for (var cal in all_calendars) {
-//        if (all_calendars.hasOwnProperty(cal)) {
-//            let calFound= false;
-//            // Check to see if it's one the configured calender from config.json
-//            for (let calConfig in config.process_calendars) {
-//                if (config.process_calendars[calConfig].id === all_calendars[cal].id) {
-//                    //logger.info("Found in config: "+config.process_calendars[calConfig].id);
-//                    calFound= true;
-//                } else {
-//                    //logger.debug("Not found in config: "+config.process_calendars[calConfig].id+" "+all_calendars[cal].id);
-//                }
-//            }
-//            if (calFound) {
-//                logger.info('Processing calendar: '+all_calendars[cal].id+' name: '+all_calendars[cal].name+' private: '+all_calendars[cal].isPrivate+" public "+all_calendars[cal].isPublic);
-//            } else {
-//                logger.debug("Ignoring calender with ID "+cal+" ("+all_calendars[cal].name+")");
-//            }
-//        }
-//    }
-//});
+function listCalendars() {
+    myCT.get('/calendars').then(all_calendars => {
+        // Loop through all calendars visible for the user
+        for (var calIndex in all_calendars) {
+            var thisCalendar= all_calendars[calIndex];
+            console.log("Calendar id: ["+thisCalendar.id+"] "+thisCalendar.name);
+        }
+    });
+}
+
+function listResources() {
+    myCT.get('/resource/masterdata').then(all_masterdata => {
+        // Loop through all calendars visible for the user
+        logger.debug(all_masterdata);
+        for (var typeIndex in all_masterdata.resourceTypes) {
+            var thisType= all_masterdata.resourceTypes[typeIndex];
+            console.log("Resource type id: ["+thisType.id+"] "+thisType.name);
+        }
+        for (var resIndex in all_masterdata.resources) {
+            var thisResource= all_masterdata.resources[resIndex];
+            console.log("Resource id: ["+thisResource.id+"] type: ["+thisResource.resourceTypeId+"] "+thisResource.name);
+        }
+    });
+}
 
 function getISODateStr(inDate) {
     return inDate.toISOString().split('T')[0];
