@@ -24,6 +24,8 @@ the history.
 
 ## Installation
 ```bash
+git clone https://github.com/a-schild/churchtools-calendarlocations.git
+cd churchtools-calendarlocations
 npm install
 ```
 
