@@ -28,12 +28,15 @@ npm install
 ```
 
 ## Configuration
-Copy over config.sample.json to config.json and adapt the config values
-You have to specify the addresses associated with the resources.
-For this you can use the Locations.ods file, just open it in your spread sheet software
+Copy over `config.sample.json` to `config.json` and adapt the config values.
+
+Then you have to specify the addresses associated with the resources.
+
+For this you can use the `Locations.ods` file, just open it in your spread sheet software
 and add/modify the locations.
 On the last line, in the last column, you will have the generated json config part
-to be put in your config.json file.
+to be put in your `config.json` file.
+
 (Just make sure that the numeric format it using iso format, and not the , as decimal separator)
 
 ## Running
