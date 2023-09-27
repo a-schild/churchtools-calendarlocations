@@ -38,7 +38,7 @@ to be put in your config.json file.
 
 ## Running
 ```bash
-bash main.js [option]
+node main.js [option]
 ```
 Usually you start this every day, every hour with a cron job
 
