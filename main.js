@@ -42,6 +42,15 @@ myCT.setBaseUrl(config.site_url);
 myCT.setUnauthorizedInterceptor(config.auth_token);
 activateLogging();
 
+/** Force login */
+function preLogin() {
+    myCT.get('/whoami?only_allow_authenticated=true').then(whoAmI => {
+        //console.log(`Hello ${whoAmI.firstName} ${whoAmI.lastName}!`);
+    });
+    }
+    
+preLogin();
+
 if (args.resources) {
     listResources();
 } else if (args.calendars) {
@@ -49,6 +58,8 @@ if (args.resources) {
 } else {
     processAppointsments();
 }
+   
+
 function processAppointsments() {
 
     //myCT.get('/whoami?only_allow_authenticated=true').then(whoAmI => {

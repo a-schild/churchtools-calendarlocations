@@ -4,7 +4,7 @@
     "keywords": ["churchtools", "ics", "icalendar", "ical", "resources"],
     "main": "main.js",
     "scripts": {
-        "start": "node main.js --dry-run"
+        "start": "node main.js -c"
     },
     "author": "a.schild",
     "contributors": [],
