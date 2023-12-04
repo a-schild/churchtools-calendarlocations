@@ -98,7 +98,7 @@ function processCalEntry(currentValue, index) {
             logger.trace(currentValue.base.address);
         } else {
             logger.trace('Has NO address, check for resources: '+index);
-            let startDate= new Date(currentValue.base.startDate);
+            let startDate= new Date(currentValue.calculated.startDate);
             let getURL= '/calendars/'+currentValue.base.calendar.id+'/appointments/'+currentValue.base.id+'/'+getISODateStr(startDate);
             logger.trace('Retrieve details from '+getURL);
             myCT.get(getURL).then(all_details => {
