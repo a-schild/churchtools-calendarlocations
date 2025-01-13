@@ -9,7 +9,7 @@
     "author": "a.schild",
     "contributors": [],
     "dependencies": {
-        "@churchtools/churchtools-client": "^1.3.0",
+        "@churchtools/churchtools-client": "^1.3.12",
         "axios-cookiejar-support": "^4.0.0",
         "tough-cookie": "^4.0.0",
         "pino": "^8.0.0",

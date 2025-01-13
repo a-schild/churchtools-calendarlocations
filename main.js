@@ -147,7 +147,12 @@ function processCalEntry(currentValue, index) {
                             logger.debug(one_detail);
                             logger.debug("with:");
                             one_detail.appointment.address= adrObject;
-                            one_detail.appointment.caption= one_detail.appointment.caption+"."; 
+                            one_detail.appointment.caption= one_detail.appointment.caption+".";
+                            if (one_detail.appointment.allDay) {
+                                logger.warn("All day event, fix start+end time");
+                                one_detail.appointment.startDate= one_detail.appointment.startDate+"T00:00:00Z";
+                                one_detail.appointment.endDate= one_detail.appointment.endDate+"T23:59:59Z";
+                            }
                             logger.debug(one_detail);
                             if (args.dryRun) {
                                 logger.info("Dry run, not updating appointment location");
