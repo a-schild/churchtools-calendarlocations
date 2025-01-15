@@ -1,4 +1,8 @@
 'use strict';
+//
+// Overwrite the log.warn method to not show the transparent login message
+//
+require('./logPatch.js');
 
 const { ChurchToolsClient, activateLogging } = require('@churchtools/churchtools-client');
 const axiosCookieJarSupport = require('axios-cookiejar-support');
